@@ -1,0 +1,21 @@
+/* Fondo general */
+body {
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  color: white;
+}
+
+/* Enlaces */
+a {
+  color: #f39c12;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  color: #e67e22;
+}
+
+/* Cambiar imagen de fondo del header */
+header {
+  background-image: url('../images/fiesta.jpg');
+  background-size: cover;
+}
