@@ -1,23 +1,27 @@
---
-title: Próximos Eventos
+---
+title: Club Noche Tarragona
 ---
 
-# 📆 Próximos Eventos
+# 🎉 Bienvenido a Club Noche Tarragona
 
-## Abril
+¡Vive la mejor experiencia nocturna en Tarragona!
 
-- **12 de abril**  
-  🎵 *Fiesta 90s*  
-  Vuelve a los mejores hits de los 90 con luces neón, photocall retro y sorpresas.
+Con DJ’s invitados cada semana, fiestas temáticas, y el mejor ambiente.
 
-- **19 de abril**  
-  🎧 *Electrónica & Reggaetón*  
-  DJ Alex Rivas + DJ Mariana G
+![Fiesta en el club](images/fiesta.jpg)
 
-- **26 de abril**  
-  🎭 *Noche de disfraces*  
-  Premio al mejor disfraz, bebidas 2x1 antes de la 1:00.
+## 📅 Eventos destacados
+- **12 de abril** - Fiesta 90s
+- **19 de abril** - Electrónica & Reggaetón
+- **26 de abril** - Noche de disfraces
+
+👉 [Ver más eventos](eventos.md)
 
 ---
 
-[Volver al inicio](index.md)
+## 📍 Dirección
+
+Carrer Major 25, Tarragona  
+Abierto viernes y sábados de 23:00 a 06:00
+
+👉 [Contacto](contacto.md)
