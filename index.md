@@ -2,6 +2,8 @@
 title: Club Noche Tarragona
 ---
 
+<link rel="stylesheet" href="assets/style.css">
+
 # 🎉 Bienvenido a Club Noche Tarragona
 
 ¡Vive la mejor experiencia nocturna en Tarragona!
