@@ -8,7 +8,7 @@ title: Club Noche Tarragona
 
 Con DJ’s invitados cada semana, fiestas temáticas, y el mejor ambiente.
 
-![Fiesta en el club](images/Logo_Taits.png)
+![Fiesta en el club](images/logo.png)
 
 ## 📅 Eventos destacados
 - **12 de abril** - Fiesta 90s
