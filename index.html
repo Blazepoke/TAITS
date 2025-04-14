@@ -787,9 +787,7 @@
                 <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">Introduce tu email y te enviaremos tu entrada exclusiva</p>
                 
 
-<form class="modal-form" id="ticketForm" action="https://formsubmit.co/jordimendez29@gmail.com" method="POST" onsubmit="showSuccessMessage()">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://blazepoke.github.io/TAITS">
+<form class="modal-form" id="ticketForm">
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
@@ -800,6 +798,7 @@
     </div>
     <button type="submit" class="modal-button">Enviar Solicitud</button>
 </form>
+                
 <div class="modal-success" id="successMessage" style="display:none;">
     <i class="fas fa-check-circle"></i>
     <h3>¡SOLICITUD RECIBIDA!</h3>
@@ -1027,7 +1026,27 @@ function showSuccessMessage() {
         document.getElementById('successMessage').style.display = 'block';
     }, 100);
 }
+        
+document.getElementById("ticketForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
+    const formData = new FormData(this);
+    fetch("https://formsubmit.co/jordimendez29@gmail.com", {
+        method: "POST",
+        headers: { 'Accept': 'application/json' },
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            this.style.display = "none";
+            document.getElementById("successMessage").style.display = "block";
+        } else {
+            alert("Hubo un error. Inténtalo de nuevo.");
+        }
+    }).catch(error => {
+        console.error("Error:", error);
+        alert("Error de red. Inténtalo más tarde.");
+    });
+});
 </script>
 </body>
 </html>
