@@ -786,9 +786,9 @@
                 <h3 class="modal-title">CONSIGUE TU ENTRADA GRATUITA</h3>
                 <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">Introduce tu email y te enviaremos tu entrada exclusiva</p>
                 
-<form class="modal-form" id="ticketForm" action="https://formsubmit.co/TUCORREO@ejemplo.com" method="POST">
+
+<form class="modal-form" id="ticketForm" action="https://formsubmit.co/TUCORREO@ejemplo.com" method="POST" onsubmit="showSuccessMessage()">
     <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://taitstarraco.com/#gracias">
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
@@ -799,13 +799,13 @@
     </div>
     <button type="submit" class="modal-button">Enviar Solicitud</button>
 </form>
+<div class="modal-success" id="successMessage" style="display:none;">
+    <i class="fas fa-check-circle"></i>
+    <h3>¡SOLICITUD RECIBIDA!</h3>
+    <p>Tu entrada gratuita ha sido reservada. Te enviaremos todos los detalles a tu email en breve.</p>
+    <p>¡Prepárate para una noche inolvidable en TAITS TARRACO!</p>
+</div>
 
-                <div class="modal-success" id="successMessage">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>¡SOLICITUD RECIBIDA!</h3>
-                    <p>Tu entrada gratuita ha sido reservada. Te enviaremos todos los detalles a tu email en breve.</p>
-                    <p>¡Prepárate para una noche inolvidable en TAITS TARRACO!</p>
-                </div>
             </div>
         </div>
     </div>
@@ -1019,6 +1019,14 @@
                 }
             });
         });
-    </script>
+    
+function showSuccessMessage() {
+    setTimeout(() => {
+        document.getElementById('ticketForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+    }, 100);
+}
+
+</script>
 </body>
 </html>
