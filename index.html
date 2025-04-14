@@ -751,8 +751,8 @@
 <body>
     <!-- Navigation -->
     <nav id="navbar">
-        <!-- Logo image will be added here - replace src with your logo path -->
-        <img src="images/logo.png" alt="TAITS TARRACO Logo" class="nav-logo">
+        <!-- Reemplaza esta ruta con tu logo -->
+        <img src="RUTA-DE-TU-LOGO-AQUI.png" alt="TAITS TARRACO Logo" class="nav-logo">
         <ul class="nav-links">
             <li><a href="#home">Inicio</a></li>
             <li><a href="#about">Nosotros</a></li>
@@ -778,7 +778,7 @@
         </div>
     </section>
 
-<!-- Free Ticket Modal -->
+    <!-- Free Ticket Modal -->
     <div class="modal" id="ticketModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -786,12 +786,12 @@
                 <h3 class="modal-title">CONSIGUE TU ENTRADA GRATUITA</h3>
                 <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">Introduce tus datos y te enviaremos tu entrada exclusiva</p>
                 
-                <!-- Cambio importante aquí: Añado action de FormSubmit -->
-                <form class="modal-form" id="ticketForm" action="https://formsubmit.co/jordimendez29@gmail.com" method="POST">
-                    <!-- Añado campos ocultos para configurar el email -->
+                <!-- Formulario que envía el email -->
+                <form class="modal-form" id="ticketForm" action="https://formsubmit.co/your-github-email@example.com" method="POST">
+                    <!-- Campos ocultos para configurar el email -->
                     <input type="hidden" name="_subject" value="Nueva solicitud de entrada gratuita - TAITS TARRACO">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://blazepoke.github.io/TAITS/thanks.html">
+                    <input type="hidden" name="_next" value="https://yourgithubusername.github.io/your-repo/thanks.html">
                     <input type="hidden" name="_captcha" value="false">
                     
                     <div class="form-group">
@@ -979,62 +979,12 @@
             }
         });
 
-        // Configuración específica para el formulario
-        ticketForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Mostrar mensaje de éxito inmediatamente
-            ticketForm.style.display = 'none';
-            successMessage.style.display = 'block';
-            
-            // Crear un nuevo FormData y enviarlo
-            const formData = new FormData(ticketForm);
-            
-            // Usar fetch para enviar el formulario
-            fetch(ticketForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Éxito - el email se ha enviado
-                    console.log('Formulario enviado con éxito');
-                    
-                    // Opcional: Redirigir después de 5 segundos
-                    setTimeout(() => {
-                        modal.classList.remove('active');
-                        setTimeout(() => {
-                            modal.style.display = 'none';
-                            ticketForm.style.display = 'block';
-                            successMessage.style.display = 'none';
-                            ticketForm.reset();
-                        }, 300);
-                    }, 5000);
-                } else {
-                    throw new Error('Error en el envío del formulario');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Mostrar mensaje de error si falla
-                alert('Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo más tarde.');
-                ticketForm.style.display = 'block';
-                successMessage.style.display = 'none';
-            });
-        });
-
-        // Resto del JavaScript se mantiene igual
-
         // Free Ticket Modal
         const modal = document.getElementById('ticketModal');
         const freeTicketBtn = document.getElementById('freeTicketBtn');
         const closeModal = document.querySelector('.close-modal');
         const ticketForm = document.getElementById('ticketForm');
         const successMessage = document.getElementById('successMessage');
-        const formContainer = document.querySelector('.modal-form-container');
 
         freeTicketBtn.addEventListener('click', () => {
             modal.style.display = 'flex';
@@ -1059,62 +1009,38 @@
             }
         });
 
+        // Form submission handling
         ticketForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(ticketForm);
-            const data = Object.fromEntries(formData);
+            // Mostrar mensaje de éxito inmediatamente
+            ticketForm.style.display = 'none';
+            successMessage.style.display = 'block';
             
-            // Here you would typically send the data to your server
-            // For GitHub pages, we'll simulate this and just show the success message
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Hide form and show success message
-                ticketForm.style.display = 'none';
-                successMessage.style.display = 'block';
-                
-                // In a real implementation, you would:
-                // 1. Send the data to your backend
-                // 2. The backend would save it to a file
-                // 3. Then show the success message
-                
-                // For GitHub Pages, you might need to use:
-                // - GitHub API
-                // - FormSubmit.co
-                // - Or another third-party service to collect the emails
-                
-                // Reset form after 5 seconds and close modal
-                setTimeout(() => {
-                    ticketForm.reset();
-                    ticketForm.style.display = 'block';
-                    successMessage.style.display = 'none';
-                    modal.classList.remove('active');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 300);
-                }, 5000);
-            }, 1500);
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            // Enviar el formulario usando Fetch API
+            fetch(ticketForm.action, {
+                method: 'POST',
+                body: new FormData(ticketForm),
+                headers: {
+                    'Accept': 'application/json'
                 }
-            });
-        });
-    </script>
-</body>
-</html>
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Formulario enviado con éxito');
+                    // Resetear el formulario después de 5 segundos
+                    setTimeout(() => {
+                        ticketForm.reset();
+                        ticketForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        modal.classList.remove('active');
+                        setTimeout(() => {
+                            modal.style.display = 'none';
+                        }, 300);
+                    }, 5000);
+                } else {
+                    throw new Error('Error en el envío');
+                }
+            })
+            .catch(error => {
+                console.error('
