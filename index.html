@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAITS TARRACO - Nightclub Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7e5f;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* Logo Container */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background-color: var(--dark);
+        }
+        
+        .logo-img {
+            max-height: 80px; /* Ajusta esta altura según necesites */
+            width: auto;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .logo-text {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        
+        .slogan {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            font-weight: 300;
+        }
+        
+        /* Resto del CSS permanece igual */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            border: 2px solid var(--light);
+            color: var(--light);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 120px; /* Ajustado para dejar espacio al logo */
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            top: 0;
+            background-color: rgba(26, 26, 46, 0.9);
+            padding: 15px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Events Section */
+        .events {
+            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .event-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-info {
+            padding: 20px;
+        }
+        
+        .event-date {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .event-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .event-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent);
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-position {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .member-bio {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            text-align: center;
+        }
+        
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0f0f1a;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+        
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 3rem;
+            }
+            
+            .slogan {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                z-index: 90;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+        
+            .menu-toggle {
+                display: block;
+                z-index: 100;
+            }
+        
+            .about-content {
+                flex-direction: column;
+            }
+        
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            nav {
+                top: 100px; /* Ajuste para móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Container -->
+    <div class="logo-container">
+        <!-- REEMPLAZA LA RUTA DE LA IMAGEN CON TU LOGO -->
+        <img src="RUTA-DE-TU-LOGO-AQUI.png" alt="TAITS TARRACO Logo" class="logo-img">
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo-text">TAITS</div>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#events">Eventos</a></li>
+            <li><a href="#team">Equipo</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="logo-text">TAITS TARRACO</h1>
+            <p class="slogan">A modern and immersive nightclub experience that merges music, tech, and culture</p>
+            <div>
+                <a href="#events" class="cta-button">Próximos Eventos</a>
+                <a href="#contact" class="cta-button secondary-button">Reservar Mesa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resto del código HTML permanece igual -->
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">Reimaginando la noche en Tarragona</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Más que una discoteca, un hub cultural</h3>
+                <p>TAITS TARRACO es una experiencia nocturna moderna e inmersiva que fusiona música, tecnología y cultura para revitalizar la forma en que Tarragona celebra la noche.</p>
+                <p>Nuestro espacio está diseñado para ofrecer diversidad, innovación y modernidad, creando un ecosistema conectado entre vida nocturna, artistas locales, universidades y turismo.</p>
+                <p>Nos enfocamos en espacios seguros, diversidad y construcción de comunidad, ofreciendo una plataforma digital fácil de usar para reservas, programas de fidelización y actualizaciones de eventos.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="TAITS TARRACO Club Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section events" id="events">
+        <h2 class="section-title">Próximos Eventos</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evento 1">
+                </div>
+                <div class="event-info">
+                    <div class="event-date">20 DE JUNIO 2023</div>
+                    <h3 class="event-title">HUID</h3>
+                    <p class="event-description">Una noche de techno puro con los mejores DJs nacionales e internacionales.</p>
+                    <a href="#" class="cta-button">Comprar Entradas</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evento 2">
+                </div>
+                <div class="event-info">
+                    <div class="event-date">27 DE JUNIO 2023</div>
+                    <h3 class="event-title">JOSE DELASHERAS</h3>
+                    <p class="event-description">El rey de la electrónica española en una noche exclusiva en TAITS.</p>
+                    <a href="#" class="cta-button">Comprar Entradas</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evento 3">
+                </div>
+                <div class="event-info">
+                    <div class="event-date">4 DE JULIO 2023</div>
+                    <h3 class="event-title">MAIS DE LOS</h3>
+                    <p class="event-description">House music con el mejor talento emergente de la escena local.</p>
+                    <a href="#" class="cta-button">Comprar Entradas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Makram Jrain">
+                </div>
+                <h3 class="member-name">Makram Jrain</h3>
+                <p class="member-position">CEO</p>
+                <p class="member-bio">Visionario líder con pasión por los negocios y la cultura.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Joel Tost">
+                </div>
+                <h3 class="member-name">Joel Tost</h3>
+                <p class="member-position">CMO</p>
+                <p class="member-bio">Estratega creativo con amplio conocimiento en marketing digital.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Jordi Méndez">
+                </div>
+                <h3 class="member-name">Jordi Méndez</h3>
+                <p class="member-position">CTO</p>
+                <p class="member-bio">Experto en tecnología, lidera la infraestructura web y de aplicaciones.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Michela Isacco">
+                </div>
+                <h3 class="member-name">Michela Isacco</h3>
+                <p class="member-position">CIO</p>
+                <p class="member-bio">Impulsa la innovación, la estrategia de datos y la inteligencia de plataforma.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-info">
+            <p>¿Listo para vivir la experiencia TAITS TARRACO? Reserva tu mesa o compra tus entradas ahora mismo.</p>
+            <p>Horario: 00:00h – 06:00h</p>
+            <p>Dirección: Calle de la Noche, 123, Tarragona</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="mailto:hello@taitstarraco.com" class="cta-button">hello@taitstarraco.com</a>
+            <a href="tel:+34666555444" class="cta-button secondary-button">+34 666 555 444</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">TAITS TARRACO</div>
+        <p class="copyright">© 2023 TAITS TARRACO. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
