@@ -778,24 +778,38 @@
         </div>
     </section>
 
-    <!-- Free Ticket Modal -->
+<!-- Free Ticket Modal -->
     <div class="modal" id="ticketModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="modal-form-container">
                 <h3 class="modal-title">CONSIGUE TU ENTRADA GRATUITA</h3>
-                <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">Introduce tu email y te enviaremos tu entrada exclusiva</p>
-                <form class="modal-form" id="ticketForm">
+                <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">Introduce tus datos y te enviaremos tu entrada exclusiva</p>
+                
+                <!-- Cambio importante aquí: Añado action de FormSubmit -->
+                <form class="modal-form" id="ticketForm" action="https://formsubmit.co/jordimendez29@gmail.com" method="POST">
+                    <!-- Añado campos ocultos para configurar el email -->
+                    <input type="hidden" name="_subject" value="Nueva solicitud de entrada gratuita - TAITS TARRACO">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://blazepoke.github.io/TAITS/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
                     </div>
                     <div class="form-group">
-                        <label for="name">Nombre</label>
+                        <label for="name">Nombre Completo</label>
                         <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
                     </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono (opcional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+34 123 456 789">
+                    </div>
+                    <input type="hidden" name="_autoresponse" value="¡Gracias por solicitar tu entrada gratuita a TAITS TARRACO! Hemos recibido tu solicitud y pronto recibirás tu entrada en este email. ¡Prepárate para una noche inolvidable!">
                     <button type="submit" class="modal-button">Enviar Solicitud</button>
                 </form>
+                
                 <div class="modal-success" id="successMessage">
                     <i class="fas fa-check-circle"></i>
                     <h3>¡SOLICITUD RECIBIDA!</h3>
@@ -964,6 +978,55 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Configuración específica para el formulario
+        ticketForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Mostrar mensaje de éxito inmediatamente
+            ticketForm.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Crear un nuevo FormData y enviarlo
+            const formData = new FormData(ticketForm);
+            
+            // Usar fetch para enviar el formulario
+            fetch(ticketForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Éxito - el email se ha enviado
+                    console.log('Formulario enviado con éxito');
+                    
+                    // Opcional: Redirigir después de 5 segundos
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        setTimeout(() => {
+                            modal.style.display = 'none';
+                            ticketForm.style.display = 'block';
+                            successMessage.style.display = 'none';
+                            ticketForm.reset();
+                        }, 300);
+                    }, 5000);
+                } else {
+                    throw new Error('Error en el envío del formulario');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Mostrar mensaje de error si falla
+                alert('Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo más tarde.');
+                ticketForm.style.display = 'block';
+                successMessage.style.display = 'none';
+            });
+        });
+
+        // Resto del JavaScript se mantiene igual
 
         // Free Ticket Modal
         const modal = document.getElementById('ticketModal');
