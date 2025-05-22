@@ -719,16 +719,26 @@
         .gallery-scroll {
             display: flex;
             overflow-x: auto;
-            gap: 15px;
+            overflow-y: hidden;
+            gap: 20px;
             padding: 20px;
             scroll-snap-type: x mandatory;
-            justify-content: center;
+            justify-content: flex-start;
+            scroll-padding: 0 20px;
+            scroll-behavior: smooth;
+
+            /* Habilita o no barra visible en PC */
+            scrollbar-width: none;
         }
 
         .gallery-scroll img {
             height: 180px;
+            width: auto;
+            max-width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
             border-radius: 10px;
-            scroll-snap-align: center;
+            scroll-snap-align: start;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -737,16 +747,15 @@
             transform: scale(1.05);
         }
 
-        /* Ocultar scrollbar en algunos navegadores */
         .gallery-scroll::-webkit-scrollbar {
-            display: none;
+            height: 6px;
         }
 
-        .gallery-scroll {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
         }
-
+        
         .gallery-modal {
             display: flex;
             position: fixed;
@@ -1276,7 +1285,7 @@
         <div class="hero-content">
             <img src="images/logo_margeless.png" alt="TAITS BEACH CLUB Logo" class="hero-logo">
             <!--<h1 class="logo-text">TAITS BEACH CLUB</h1>-->
-            <p class="slogan">El mejor tardeo de Tarragona con música electrónica, cócteles premium y ambiente playero
+            <p class="slogan">El mejor tardeo de Tarragona con variedad musical, cócteles premium y ambiente playero
             </p>
             <div class="cta-buttons">
                 <a href="#events" class="cta-button">Eventos</a>
@@ -1323,7 +1332,7 @@
         <div class="about-content fade-in">
             <div class="about-text">
                 <h3>Tardeo Premium en Tarragona</h3>
-                <p>TAITS BEACH CLUB redefine el concepto de tardeo con una combinación única de música electrónica,
+                <p>TAITS BEACH CLUB redefine el concepto de tardeo con una combinación única de diferentes estilos de música,
                     cócteles artesanales y el mejor ambiente playero de la costa.</p>
                 <!--<p>Nuestro espacio exclusivo frente al mar ofrece cabañas VIP, piscina infinity con vistas al Mediterráneo y una programación con los mejores DJs nacionales e internacionales.</p> -->
                 <p>De jueves a domingo, desde el atardecer hasta la madrugada, vive la auténtica experiencia del tardeo
@@ -1387,20 +1396,28 @@
         <h2 class="section-title">Cócteles & Bebidas</h2>
         <div class="cocktail-container">
             <div class="cocktail-column fade-in">
-                <h3 class="column-title">Bebidas Clásicas</h3>
+               <h3 class="column-title">Bebidas & Packs especiales</h3>
                 <ul class="drink-list">
                     <li><span>Cerveza</span><span class="price">4€</span></li>
                     <li><span>Vermut</span><span class="price">4€</span></li>
-                    <li><span>Ron-cola</span><span class="price">8€</span></li>
-                    <li><span>Gin-tonic</span><span class="price">8€</span></li>
-                    <li><span>Whisky</span><span class="price">3€</span></li>
-                    <li><span>Tequila</span><span class="price">3€</span></li>
-                    <li><span>Mojito clásico</span><span class="price">8€</span></li>
+                    <li><span>Combinados</span><span class="price">8€</span></li>
+                    <li><span>Chupitos</span><span class="price">3€</span></li>
+                    <li><span>Refrescos</span><span class="price">2€</span></li>
+                    <li><span> </span><span class="price"> </span></li>
+                    <li><span>PACK DE 2 COMBINADOS</span><span class="price">12€</span></li>
+                    <li><span>PACK DE 2 CHUPITOS</span><span class="price">5€</span></li>
                 </ul>
             </div>
+            
             <div class="cocktail-column fade-in">
-                <h3 class="column-title">Cócteles Especiales</h3>
-
+                <h3 class="column-title">Cócteles Premium</h3>
+                <div class="cocktail-card">
+                    <div class="card-header">
+                        <h4>Mojito clásico</h4>
+                        <span class="price">9€</span>
+                    </div>
+                    <p>Ron blanco, limón, azúcar y menta</p>
+                </div>
                 <div class="cocktail-card">
                     <div class="card-header">
                         <h4>Piña Colada</h4>
@@ -1450,12 +1467,11 @@
     <section id="gallery" class="gallery-section">
         <h2 class="section-title">Galería</h2>
         <div class="gallery-scroll fade-in" id="gallery-scroll">
-            <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Vistas TAITS">
-            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Cócteles">
+            <img src="images/piscina.png" alt="Piscina">
+            <img src="images/Fiesta_en_la_piscina.png" alt="Fiesta_piscina">
             <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="DJ Session">
+            <img src="images/logo_sobre_plastico.png" alt="Logo_plastico">
             <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="Pool Area">
             <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -1526,7 +1542,7 @@
         <h2 class="section-title">Contacto</h2>
         <div class="contact-info">
             <p>Port Esportiu, S N, 43004 Tarragona</p>
-            <p>Horario: Jueves a Domingo, 16:00 - 02:00</p>
+            <p>Horario: Jueves a Domingo, 18:00 - 00:00</p>
             <!--<p>Horario de invierno: Próximamente</p>-->
             <div class="social-links">
                 <a href="https://www.instagram.com/taitstarraco/" target="_blank" rel="noopener noreferrer">
@@ -1536,7 +1552,7 @@
                <a href="#"><i class="fab fa-facebook-f"></i></a> -->
             </div>
             <div class="contact-buttons">
-                <a href="mailto:reservas@taitsbeach.com" class="cta-button">hello@taitstarraco.com</a>
+                <a href="mailto:hello@taitstarraco.com" class="cta-button">hello@taitstarraco.com</a>
                 <a href="tel:+34977223344" class="cta-button secondary-button">+34 977 22 33 44</a>
             </div>
         </div>
@@ -1723,6 +1739,15 @@
         });
 
         fadeElements.forEach(el => fadeObserver.observe(el));
+
+         /* Gallery scroll */
+        const galleryScroll = document.querySelector('.gallery-scroll');
+        galleryScroll.addEventListener('wheel', function (e) {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                galleryScroll.scrollLeft += e.deltaY;
+            }
+        });
     </script>
 </body>
 
